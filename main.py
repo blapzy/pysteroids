@@ -16,6 +16,9 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
     dt = 0
+    score = 0
+    font = pygame.font.SysFont("Arial", 24)
+    red = (255,0,0)
     
     #define groups
     updatable = pygame.sprite.Group()
@@ -53,8 +56,11 @@ def main():
                     log_event("asteroid_shot")
                     ast.split()
                     shot.kill()
+                    score += 1
+                    print(score)
         for item in drawable:
             item.draw(screen)
+        screen.blit(font.render(f'Score: {score}',True, red), (0,0))
         pygame.display.flip()
 
         #end loop update clock
